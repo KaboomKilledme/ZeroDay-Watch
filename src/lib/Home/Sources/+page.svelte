@@ -13,7 +13,6 @@
         
         <a href="https://thehackernews.com/" class="source source-2">
             <img class="source__logo source-2__logo " src="sources/source-2-logo.png" alt="">
-
             <span class="source__text"> The Hacker News </span>
         </a >
         
@@ -74,7 +73,11 @@
                 
 
                 &:hover{
-                    background-color: $blue3;
+                    background: $linearGradient1;
+
+                    .source__logo{
+                        animation: none;
+                    }
                 }
             }
 
@@ -144,7 +147,11 @@
         padding: 1rem;
         border-radius: 1rem;
         &:hover{
-            background-color: $blue3;
+            background: $linearGradient1;
+
+            .source-4__logo{
+                animation: none;
+            }
         }
         }
 

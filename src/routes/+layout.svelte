@@ -14,6 +14,12 @@
     }
 
     .MainContainer{
+        display: flex;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+
+        flex-direction: column;
+        
         width: 80%;
         margin: auto;
         height: 100%;
