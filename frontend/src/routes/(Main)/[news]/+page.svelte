@@ -4,14 +4,14 @@
 </script>
 
 
-<div class="SourcesContainer">
+<div class="NewsSourcesContainer">
     <SourceSelector />
     <Sources />
 </div>
 
 
 <style lang="scss">
-    .SourcesContainer{
+    .NewsSourcesContainer{
         height: 100%;
         width: 100%;
         display: grid;
@@ -19,8 +19,6 @@
         display: -moz-grid;
         grid-template-columns: repeat(20,1fr);
         grid-template-rows: repeat(20,1fr);
-    
-    
     }
  
 </style>
