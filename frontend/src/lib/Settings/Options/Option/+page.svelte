@@ -1,14 +1,30 @@
 <script>
-    export let name;
-    export let icon;
-    export let isDelete = false;
+    import {createEventDispatcher} from 'svelte'
+    export let option;
+
+
+    const dispatch = createEventDispatcher();
+
+    function showOption(id){
+        dispatch('option', {
+            id:id
+        })
+    }
+
+
 </script>
 
-<button class="OptionBorder {isDelete ? "DeleteAccountBorder":""}">
-    <div class="Option {isDelete ? "DeleteAccount":""}">
+<button
+
+    on:click={() => {showOption(option.id)}}
+    class="OptionBorder
+    {option.isDelete ? "DeleteAccountBorder":""}" 
+    >
+
+    <div class="Option {option.isDelete ? "DeleteAccount":""}">
         <span class="Option__title">
-            <i class="icon fa-solid {icon}"></i>
-            {name}
+            <i class="icon fa-solid {option.icon}"></i>
+            {option.name}
         </span>
     </div>
 </button>

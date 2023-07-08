@@ -1,13 +1,25 @@
 <script>
-    import Option from "$lib/Settings/Option/+page.svelte";
+    import Options from "$lib/Settings/Options/+page.svelte";
+    import UpdateForm from "$lib/Settings/UpdateForm/+page.svelte";
+
+    let shownOption = null;
+
+    function updateOption(event){
+        shownOption = event.detail.id;
+        console.log(shownOption);
+    }
+
+    function closeOption(event){
+        shownOption = event.detail.id;
+    }
 
 </script>
 
 <div class="SettingsContainer">
-    <Option name={'Update Details'} icon={"fa-pen-to-square"}/>
-    <Option name={"Log Out"} icon={"fa-solid fa-right-from-bracket"} />
-    <Option name={'Delete Account'} icon={"fa-user-slash"} isDelete={true}/>
-
+    {#if shownOption === 1}
+        <UpdateForm on:close={closeOption}/>
+    {/if}
+    <Options on:option={updateOption} />
 </div>
 
 
