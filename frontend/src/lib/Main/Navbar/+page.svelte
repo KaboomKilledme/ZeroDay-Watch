@@ -37,10 +37,6 @@
             </a>
         {/each}
 
-        <a href="/news" class="NavbarRoute">
-            <i class="fa-solid fa-home"></i>
-        </a>
-
     </div>
 </nav>
 
