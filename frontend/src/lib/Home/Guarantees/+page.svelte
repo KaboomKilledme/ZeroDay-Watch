@@ -34,13 +34,13 @@
     <div class="OurGuarantees">
 
         {#each guarantees as guarantee}
-            <button class="OurGuaranteesIcon" on:click={() => selectGuarantee(guarantee.id)}>
-                <i class="fa-solid {guarantee.icon} {guarantee.id === selected ? 'selected':''}"></i>
+            <a href="#" class="OurGuaranteesIcon" on:click={() => selectGuarantee(guarantee.id)}>
+                <i class="fa-solid icon {guarantee.icon} {guarantee.id === selected ? 'selected':''}"></i>
                 <span class="OurGuaranteeIcon__title">{guarantee.title}</span>
                 {#if guarantee.id === selected}
                     <div class="underline"></div>
                 {/if}
-            </button>
+            </a>
         {/each}
 
     </div>
@@ -82,12 +82,21 @@
         
 
             .OurGuaranteesIcon{
-            
+                display: flex;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
                 color:$blue3;
                 font-size: 2.2rem;
                 background:none;
                 border: none;
+                text-decoration: none;
 
+                .icon{
+                    margin-bottom: .4rem;
+                }
                 .OurGuaranteeIcon__title{
                     font-size: 1rem;
                     font-family: $secondaryFont;

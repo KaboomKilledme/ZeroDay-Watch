@@ -15,7 +15,7 @@
         justify-content:flex-start;
         align-items: center;
         width: 100%;
-        margin:auto;
+        margin:auto;    
         background: $linearGradient1;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

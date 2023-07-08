@@ -20,7 +20,6 @@
 
         flex-direction: column;
         
-        width: 80%;
         margin: auto;
         height: 100%;
     

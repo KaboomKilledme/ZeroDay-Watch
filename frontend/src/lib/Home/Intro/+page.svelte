@@ -6,15 +6,13 @@
     <div class="LandingPageImg">
         <img class="LandingPageImg__pic" src="/asset1.png" />
     </div>
-
     <Desc />
 </div>
 
 <style lang="scss">
     .LandingPageIntro{
-        
+        margin: auto;
         width:100%;
-        
         margin-top: 2rem;
 
 
@@ -44,7 +42,6 @@
             display: flex;
             display: -webkit-flex;
             display: -ms-flexbox;
-           
 
             @media screen  and (max-width:860px){
                 justify-content: flex-end;
@@ -55,6 +52,7 @@
                 width: 20rem;
                 @media screen and (max-width: 720px){
                     width: 15rem;
+        
                 }
                 @media screen and (max-width: 295px){
                     width: 12rem;
