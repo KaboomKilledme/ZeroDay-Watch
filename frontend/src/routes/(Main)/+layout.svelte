@@ -25,7 +25,10 @@
         <img class="MainRouteHeader__logo" src="logo.png" alt="">
         <span class="MainRouteHeader__route">{pageTitle}</span>
     </div>
-    <slot />
+
+    <div class="MainRouteContainer">
+        <slot />
+    </div>
 
     <nav class="MainRouteNavbar">
         <div class="NavbarRoutes">
@@ -59,8 +62,7 @@
         padding: 0;
         margin: 0;
         width: 100vw;
-        height: 100vh;
-        position: absolute;
+        height: 95vh;
         grid-template-columns: repeat(20, 1fr);
         grid-template-rows: repeat(20, 1fr);
 
@@ -90,15 +92,22 @@
         
         }
 
+        .MainRouteContainer{
+            grid-column: 1/21;
+            grid-row: 4/19;
+        }
+
         .MainRouteNavbar{
             grid-column: 2/20;
-            grid-row: 17/20;
+            grid-row: 19/21;
             height: 100%;
             width:100%;
             display: flex;
             display: -ms-flexbox;
             display: -webkit-flex;
             justify-content: center;
+            align-items: center;
+        
             color: white;
 
             .NavbarRoutes{
