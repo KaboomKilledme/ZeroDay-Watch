@@ -16,6 +16,12 @@
 <style lang="scss">
     .LandingPage{
         height: 100%;
+        
+        @media screen and (min-width: 720px){
+                width: 80%;
+                margin: auto;
+        }
+
 
         @media screen and (max-width: 480px){
             display: grid;
@@ -25,10 +31,6 @@
             grid-template-columns: 1fr;
             margin-bottom: 1rem;
         }
-        
-        @media screen and (min-width: 720px){
-                width: 80%;
-                margin: auto;
-        }
+    
     }
 </style>

@@ -1,13 +1,25 @@
 <script>
-    
     import SourceCard from "$lib/Main/Sources/SourceCard/+page.svelte";
+    import { createEventDispatcher } from "svelte";
+    const dispatch = createEventDispatcher();
+
+    export let contentId;
+
+    function showContent(event){
+        dispatch('showContent', {
+            source:event.detail.source
+        })
+    }
+
+    export let sources;
 
 </script>
 
 <div class="Sources">
-    <SourceCard source={{logo:3, type:'Krebs' }} />
-    <SourceCard source={{logo:3, type:'Krebs' }} />
-    <SourceCard source={{logo:3, type:'Krebs' }} />
+    {#each sources as source}
+        <SourceCard on:showContent={showContent} source={source} />
+    {/each}
+
 </div>
 
 

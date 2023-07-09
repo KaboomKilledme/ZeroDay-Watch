@@ -29,8 +29,6 @@
 <style lang="scss">
     .LandingPageDesc{
         width: 100%;
-        grid-column: 1/2;
-        grid-row: 1/2;
 
         .LandingPageDesc__title{
             font-family: $primaryFont;
@@ -41,7 +39,9 @@
             color: $blue2;
             font-size: 1.5rem;
         }
-
+        @media screen and (max-width:719px){
+            margin-left: 1rem;
+        }
         .LandingPageDesc__line{
             border: .1rem solid $blue2;
             width: 90%
@@ -64,7 +64,7 @@
                 margin-top: .3rem;
                 text-align: center;
 
-                background-color: $blue3;
+                background:$linearGradient1;
                 font-family: $primaryFont;
                 text-decoration: none;
                 color: black;
@@ -72,7 +72,7 @@
                 letter-spacing: .1rem;
 
                 &:hover{
-                    background-color: rgb(43, 43, 43);
+                    background: rgb(43, 43, 43);
                     color: white;
                 }
 

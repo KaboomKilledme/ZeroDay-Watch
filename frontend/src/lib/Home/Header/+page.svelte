@@ -21,6 +21,15 @@
         -webkit-text-fill-color: transparent;
         font-size: 2.5rem;
 
+        @media screen and (max-width:719px){
+            width:100%;
+            display: flex;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
         @media screen and (max-width: 408px) {
             font-size: 1.5rem;
         }
