@@ -19,7 +19,7 @@
             width: 14rem;
             padding: 0;
             border-radius: 2rem;
-            background: rgb(43, 43, 43);
+            background: rgb(36, 36, 36);
             border: none;
             outline: none;
             color: white;

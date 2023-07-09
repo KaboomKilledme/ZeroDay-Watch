@@ -25,11 +25,6 @@
             </p>
         </div>
 
-        <div class="SourceContent">
-            <p class="SourceContent__text">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, blanditiis nam. Expedita eum minus quae similique repudiandae id cum eius enim, corporis velit repellendus laborum odit voluptatum porro sint accusamus adipisci maiores excepturi voluptate alias. Cupiditate consequatur tempore eos temporibus et veniam impedit maiores ad dignissimos, sequi qui facilis, neque velit quod fugit quaerat tempora veritatis, accusamus quos dolor! Dolore quod culpa optio iusto atque voluptatum eligendi a eaque incidunt? Voluptate facere soluta, autem totam beatae exercitationem repudiandae perspiciatis itaque nihil assumenda dignissimos amet perferendis, est magni eum nostrum delectus tempora cumque explicabo eos, magnam debitis? Culpa dolorem tenetur suscipit.
-            </p>
-        </div>
     </button>
 </div>
 
@@ -105,35 +100,10 @@
     
         }
 
-        .SourceContent{
-            grid-column: 2/20;
-            grid-row: 8/19;
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            width: 100%;
-            font-size: 1.2rem;
-            color: white;
-            overflow: hidden;
-            margin-top: .5rem;
-
-            .SourceContent__text{
-                height: 4rem;
-                width: 100%;
-                height: 100%;
-                padding: 0;
-                word-wrap: break-word;
-                word-break: break-all;
-                text-overflow: clip;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            }
-
-        }
 
         .SourceTitle{
             grid-column: 2/20;
-            grid-row: 3/7;
+            grid-row: 3/18;
             padding: 0;
             display: flex;
             flex-direction: row;

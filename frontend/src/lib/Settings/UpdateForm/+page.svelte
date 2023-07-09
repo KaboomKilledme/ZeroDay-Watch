@@ -27,7 +27,6 @@
             {/each}
 
         </div>
-
         <input on:click={() => {closeForm()}}
         class="UpdateForm__btn"
         type="submit" value="update">
@@ -36,7 +35,11 @@
 
 <style lang="scss">
     .UpdateFormBorder{
-
+        opacity: 0;
+        animation-name: fadeIn;
+        animation-duration: .5s;
+        
+        opacity: 1;
         display: flex;
         display: -ms-flexbox;
         display: -webkit-flex;
