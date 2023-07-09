@@ -37,11 +37,11 @@
             <button class="ContentOptions__btn closeBtn" on:click={closeBtn}>
                 <i class="ContentIcon fa-solid fa-xmark"></i>
             </button>
-
+            {#if !isBookmark}
             <button class="ContentOptions__btn ContentOptionsBtnEffect">
                 <i class="ContentIcon fa-solid fa-bookmark"></i>
             </button>
-            {#if isBookmark}
+            {:else if isBookmark}
                 <button class="ContentOptions__btn ContentOptionsBtnEffect" on:click={() => [removeSave(content.id), closeBtn()]}>
                     <i class="ContentIcon fa-solid fa-trash"></i>
                 </button>

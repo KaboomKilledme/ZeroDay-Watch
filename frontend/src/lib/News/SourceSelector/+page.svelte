@@ -39,11 +39,12 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        overflow-y: hidden;
         overflow-x: scroll;
-
+        margin: auto;
+        
         @media screen and (max-width: 415px) {
             width: 90%;
-            margin: auto;
             justify-content: flex-start;
         }
 

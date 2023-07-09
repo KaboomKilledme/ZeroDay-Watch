@@ -4,7 +4,7 @@
     const dispatch = createEventDispatcher();
 
     function closeBtn(){
-        
+
         dispatch('close', {
             id: null
         })
@@ -43,7 +43,7 @@
         width: 18rem;
         min-height: 13rem;
         position: fixed;
-        background: $linearGradient1;
+        background: -webkit-linear-gradient(50deg, red, purple);
         display: flex;
         display: -ms-flexbox;
         display: -webkit-flex;

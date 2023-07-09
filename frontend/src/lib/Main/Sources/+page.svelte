@@ -3,8 +3,6 @@
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
-    export let contentId;
-
     function showContent(event){
         dispatch('showContent', {
             source:event.detail.source

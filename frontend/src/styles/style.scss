@@ -1,4 +1,14 @@
 @import "./abstracts/all";
 
 
-$blue: rgb(53, 167, 0);
+::-webkit-scrollbar{
+    width: .8rem;
+}
+::-webkit-scrollbar-thumb{
+    background:$linearGradient1;
+    border-radius: 1rem;
+
+}
+::-webkit-scrollbar-track{
+    background:none;
+}

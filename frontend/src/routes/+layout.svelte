@@ -1,3 +1,7 @@
+<svelte:head>
+    <link rel="stylesheet" href="./src/styles/style.scss">
+</svelte:head>
+
 <div class="MainPage">
     <main class="MainContainer">
         <slot />
@@ -17,11 +21,11 @@
         display: flex;
         display: -ms-flexbox;
         display: -webkit-flex;
-
         flex-direction: column;
-        
         margin: auto;
         height: 100%;
     
     }
+
+   
 </style>

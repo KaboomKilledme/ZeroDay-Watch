@@ -172,7 +172,7 @@
 
     @keyframes glowing {
     0% {
-      box-shadow: 0 0 .4rem $blue;
+      box-shadow: 0 0 .4rem $blue1;
     }
     50% {
       box-shadow: 0 0 1rem $blue1;
