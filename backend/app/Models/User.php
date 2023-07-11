@@ -41,4 +41,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function sources(){
+        return $this->belongsToMany(Source::class, 'source_users'); 
+    }
 }
