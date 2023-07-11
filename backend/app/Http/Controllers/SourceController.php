@@ -12,6 +12,5 @@ class SourceController extends Controller
         $sources = Source::where('source', $source)->get();
         return $sources;
     }
-
     
 }

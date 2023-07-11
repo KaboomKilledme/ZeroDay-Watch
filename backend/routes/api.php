@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +30,10 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('sources', [SourceController::class, 'getSources']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
     Route::apiResource('bookmarks', BookmarkController::class);
     Route::post('bookmarks/remove', [BookmarkController::class, 'deleteBookmark']);
+    Route::post('users', [UserController::class, 'updateDetails']);
+    Route::post('users/delete', [UserController::class, 'destroy']);
     Route::post ('/logout', [AuthController::class, 'logout']);
 });
 
