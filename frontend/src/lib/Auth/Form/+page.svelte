@@ -1,24 +1,115 @@
 <script>
-    export let title = "Login";
-    export let inputs = [
-        {name:'username', placeholder:'Create Username', type:'text'},
-        {name:'password', placeholder:'Create Password', type:'password'},
-        {name:'checkPassword', placeholder:'Confirm Password', type:'password'},
-    ];
+    import { PUBLIC_API_URL } from "$env/static/public";
+    import Notification from "$lib/Main/Notification/+page.svelte";
+
+    export let title;
+    export let inputs;
     export let btnText;
+
+    let inputValues = [null, null, null]
+
+    function handleInput(event){
+        if( event.target.id === "password" || 
+            event.target.id === "checkPassword"
+        ){
+            event.target.type = "password"
+        }
+    }
+
+    function handleSubmit(event){
+        const username = inputValues[0];
+        const password = inputValues[1];
+        const checkPassword = inputValues[2];
+        
+        event.preventDefault();
+        
+        if(title === "login"){
+            login(username, password)
+        } else if (title === "register"){
+            register(username, password, checkPassword)
+        }
+
+        inputValues = [null, null, null];
+
+    }
+
+    function register(username, password, checkPassword){
+    
+        if(password === checkPassword){
+            console.log('Same password')
+            authenticate(username, password)
+        } else {       
+            console.log('Different password')
+            displayError('Passwords do not match');
+        }
+        
+    }
+
+    function login(username, password){
+        authenticate(username, password)
+    }
+
+    async function authenticate(username, password){
+        const response = await fetch(`${PUBLIC_API_URL}/api/${title}`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/vnd.api+json",
+                "Content-Type": "application/vnd.api+json",
+            },
+            body: JSON.stringify({
+                    name: username,
+                    password: password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if(response.ok){
+                displaySuccess('You have logged in');
+                console.log(data);
+
+            }else{
+                displayError(data.message);
+            }
+
+    }
+
+    function displayError(message){
+        displayNotification('error', message);
+    }
+
+    function displaySuccess(message){
+        displayNotification('success', message);
+    }
+
+    function displayNotification(type, message){
+        const Notifications = document.querySelector(`.MainContainer`);
+        new Notification({
+            target: Notifications,
+            props: {
+                type:type,
+                text: message
+            }
+        })
+    }
+
 </script>
 
 
 <div class="AuthFormContainer">
-    <form class="AuthForm" action="">
+    <form class="AuthForm" id="AuthForm" >
         <h1 class="AuthForm__title">{title}</h1>
         <div class="AuthFields">
             {#each inputs as input}
-                <input class="AuthFields__input" id="{input.name}"
-                placeholder="{input.placeholder}" type="{input.type}" >
+                <input class="AuthFields__input" id="{input.name}" 
+                placeholder="{input.placeholder}" bind:value={inputValues[input.id-1]} 
+                on:input={handleInput}
+                >
             {/each}
         </div>
-        <input class="AuthForm__submit" type="submit" value="{btnText}" name="" id="">
+        <button class="AuthForm__submit" form="AuthForm" on:click={handleSubmit}>
+            {btnText}
+        </button> 
     </form>
 </div>
 

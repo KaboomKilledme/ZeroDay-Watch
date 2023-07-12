@@ -1,18 +1,6 @@
 @import './variables';
 @import './mixins';
 
-// @include keyframes-animation(glowing){
-//     0% {
-//         box-shadow: 0 0 .4rem var$blue1;
-//       }
-//       50% {
-//         box-shadow: 0 0 1rem $blue1;
-//       }
-//       100% {
-//         box-shadow: 0 0 .4rem $blue1;
-//       }
-// }'
-
 @include keyframes-animation(fadeIn){
     0% {
         opacity: 0
@@ -20,5 +8,15 @@
 
     100% {
         opacity: 1;
+    }
+}
+
+@include keyframes-animation(removeNotification){
+    0%{
+        opacity: 1;
+    }
+
+    100%{
+        opacity: 0;
     }
 }

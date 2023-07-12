@@ -1,3 +1,7 @@
+<script>
+
+</script>
+
 <svelte:head>
     <link rel="stylesheet" href="./src/styles/style.scss">
 </svelte:head>
@@ -14,7 +18,11 @@
         width: 100%;
         padding:0;
         margin:0;
-        background: $backgroundColour
+        background: $backgroundColour;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        overflow: hidden;
+
     }
 
     .MainContainer{
@@ -24,6 +32,9 @@
         flex-direction: column;
         margin: auto;
         height: 100%;
+        padding: 0;
+        overflow-y: scroll;
+
     
     }
 
