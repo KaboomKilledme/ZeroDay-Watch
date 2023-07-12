@@ -16,13 +16,27 @@ class SourceFactory extends Factory
      */
     public function definition(): array
     {
+        $source = $this->faker->randomElement(['krebs', 'thn', 'cisa', 'secweek']);
 
         return [
 
             'title' => $this->faker->company(),
             'content' => $this->faker->text(),
-            'source' => $this->faker->randomElement(['Krebs', 'THN', 'CISA', 'SecWeek'])
+            'type' => $source,
+            'logo' => $this->selectLogo($source)
         ];
     }
+
+    protected function selectLogo($source){
+        if($source === 'krebs'){
+            return 3;
+        } elseif($source === 'thn'){
+            return 2;
+        } elseif($source === 'cisa'){
+            return 4;
+        } else{
+            return 1;
+        }
+    } 
 
 }

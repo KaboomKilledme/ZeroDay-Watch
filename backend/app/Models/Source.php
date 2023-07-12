@@ -12,7 +12,8 @@ class Source extends Model
     protected $fillable = [
         'title',
         'content',
-        'source',
+        'type',
+        'logo'
     ];
 
     public function users(){

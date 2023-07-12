@@ -1,6 +1,7 @@
 <script>
     import { PUBLIC_API_URL } from "$env/static/public";
     import Notification from "$lib/Main/Notification/+page.svelte";
+    import { goto } from "$app/navigation";
 
     export let title;
     export let inputs;
@@ -34,19 +35,26 @@
     }
 
     function register(username, password, checkPassword){
-    
-        if(password === checkPassword){
-            console.log('Same password')
-            authenticate(username, password)
-        } else {       
-            console.log('Different password')
-            displayError('Passwords do not match');
+        
+        if(username === null || password === null || checkPassword === null){
+            displayError('Fill in all fields');
+        } else {
+                if(password === checkPassword){
+                    authenticate(username, password);
+                } else {       
+                    displayError('Passwords do not match');
+                }
         }
+        
         
     }
 
     function login(username, password){
-        authenticate(username, password)
+        if(username === null || password === null){
+            displayError('Fill in all fields');
+        } else {
+            authenticate(username, password);
+        }
     }
 
     async function authenticate(username, password){
@@ -61,17 +69,23 @@
                     password: password,
                 }),
             });
-
             const data = await response.json();
-
             if(response.ok){
                 displaySuccess('You have logged in');
-                console.log(data);
-
+                const expire = setCookieDate();
+                const token = data.data.token;
+                document.cookie = `authCookie=${token}; expires=${expire}; path=/; SameSite=Strict; secure;`;
+                goto('/news?krebs')
             }else{
                 displayError(data.message);
             }
+    }
 
+    function setCookieDate(){
+        const expirationDays = 1;
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + expirationDays);
+        return expirationDate.toUTCString();
     }
 
     function displayError(message){

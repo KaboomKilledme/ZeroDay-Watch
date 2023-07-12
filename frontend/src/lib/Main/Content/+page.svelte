@@ -29,7 +29,7 @@
             </p>
 
             <p class="ContentText__text">
-                {content.text}
+                {content.content}
             </p>
         </div>
         

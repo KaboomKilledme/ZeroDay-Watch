@@ -3,6 +3,7 @@
     import Navbar from "$lib/Main/Navbar/+page.svelte";
     import Header from "$lib/Main/Header/+page.svelte";
 
+    
     const routes = [
         {route:'/news', icon:'fa-newspaper', title:'News'},
         {route:'/bookmarks', icon:'fa-bookmark', title:'Bookmarks'},

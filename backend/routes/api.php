@@ -35,5 +35,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('users', [UserController::class, 'updateDetails']);
     Route::post('users/delete', [UserController::class, 'destroy']);
     Route::post ('/logout', [AuthController::class, 'logout']);
+    Route::get('/token', [AuthController::class, 'getToken']);
 });
 

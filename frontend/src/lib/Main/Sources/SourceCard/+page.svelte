@@ -10,20 +10,21 @@
 
     export let source;
 
+    console.log(source.type);
 
 </script>
 
 <div class="SourceBorder">
     <button class="Source" on:click={showContent(source)}>
         <div class="SourceLogoContainer">
-            <div class="SourceLogo SourceLogo__pic CircleSourecLogo { source.type === "Krebs" && "krebsSourceLogo"}">
+            <div class="SourceLogo SourceLogo__pic CircleSourecLogo { source.type === "krebs" && "krebsSourceLogo"}">
                 <img class="SourceLogo__pic
-                { source.type === 'CISA' && 'whiteLogo'}
-                { source.type === 'SecWeek' && 'whiteLogo'}
+                { source.type === 'cisa' && 'whiteLogo'}
+                { source.type === 'secweek' && 'whiteLogo'}
 
-                { source.type === "THN" ? 'thnLogo':''} 
-                circleLogo {source.type === "Krebs" && "kerbsLogo"}"
-                src="sources/source-{source.logo}-logo.png" alt="">
+                { source.type === "thn" ? 'thnLogo':''} 
+                circleLogo {source.type === "krebs" && "kerbsLogo"}"
+                src="sources/source-{source.logo}-logo.png">
             </div>
         </div>
 
