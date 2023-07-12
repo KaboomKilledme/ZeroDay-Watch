@@ -8,9 +8,6 @@
     let shownContent = null;
     let content;
 
-
-    console.log(data)
-
     function showContent(event){
         shownContent = event.detail.source.id
         if(shownContent !== null){
@@ -24,17 +21,17 @@
 <div class="NewsSourcesContainer">
     <SourceSelector />
 
-    {#await data.sources}
+    {#await data}
         Loading...
-    {:then sources} 
-        {#if sources}
-            <Sources sources={sources} on:showContent={showContent} />
+    {:then data} 
+        {#if data.sources}
+            <Sources sources={data.sources}  on:showContent={showContent} />
         {/if}
     {/await}
     
 
     {#if shownContent}
-        <Content content={content} on:close={showContent} />
+        <Content content={content} authToken={data.authToken} on:close={showContent} />
     {/if}
 </div>
 

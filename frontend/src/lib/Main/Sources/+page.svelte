@@ -14,14 +14,25 @@
 </script>
 
 <div class="Sources">
-    {#each sources as source}
-        <SourceCard on:showContent={showContent} source={source} />
-    {/each}
+    
+    {#if sources.length === 0}
+        <h1>No Souces Found</h1>
+    {:else}
+        {#each sources as source}
+            <SourceCard on:showContent={showContent} source={source} />
+        {/each}
+    {/if}
+    
 
 </div>
 
 
 <style lang="scss">
+    h1{
+        font-size: 2rem;
+        color: white;
+        font-family: $primaryFont;
+    }
      .Sources{
             overflow-y: hidden;
             grid-column: 1/21;

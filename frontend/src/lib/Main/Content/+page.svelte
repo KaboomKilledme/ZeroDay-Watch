@@ -1,8 +1,12 @@
 <script>
+    import { PUBLIC_API_URL } from "$env/static/public";
+    import Notification from "$lib/Main/Notification/+page.svelte";
     import { createEventDispatcher } from "svelte";
 
+    export let data;
     export let content;
     export let isBookmark = false;
+    export let authToken;
 
     const dispatch = createEventDispatcher()
 
@@ -15,6 +19,68 @@
     function removeSave(id){
         dispatch('saved', {
             id:id
+        })
+    }
+
+
+    async function bookmarkSource(id){
+        const response = await fetch(`${PUBLIC_API_URL}/api/bookmarks`, {
+            method:'POST',
+            headers: {
+                'Authorization':`Bearer ${authToken}`,
+                "Accept": "application/vnd.api+json",
+                "Content-Type": "application/vnd.api+json",
+            }, body: JSON.stringify({
+                    id: id,
+            }),
+        })
+
+        const data = await response.json();
+
+        if(response.ok){    
+            displaySuccess("Bookmark has been added")
+        } else {
+            displayError('Something Wrong')
+        }
+    }
+
+    async function deleteBookmark(id){
+        const response = await fetch(`${PUBLIC_API_URL}/api/bookmarks/remove`, {
+            method:'POST',
+            headers: {
+                'Authorization':`Bearer ${authToken}`,
+                "Accept": "application/vnd.api+json",
+                "Content-Type": "application/vnd.api+json",
+            }, body: JSON.stringify({
+                id: id,
+            }),
+        })
+
+        const data = await response.json();
+
+        if(response.ok){    
+            displaySuccess("Bookmark has been deleted")
+        } else {
+            displayError('Something Wrong')
+        }
+    }
+
+    function displayError(message){
+        displayNotification('error', message);
+    }
+
+    function displaySuccess(message){
+        displayNotification('success', message);
+    }
+
+    function displayNotification(type, message){
+        const Notifications = document.querySelector(`.MainContainer`);
+        new Notification({
+            target: Notifications,
+            props: {
+                type:type,
+                text: message
+            }
         })
     }
 
@@ -38,11 +104,13 @@
                 <i class="ContentIcon fa-solid fa-xmark"></i>
             </button>
             {#if !isBookmark}
-            <button class="ContentOptions__btn ContentOptionsBtnEffect">
+
+            <button class="ContentOptions__btn ContentOptionsBtnEffect" on:click={() => {bookmarkSource(content.id)}}>
                 <i class="ContentIcon fa-solid fa-bookmark"></i>
+            
             </button>
             {:else if isBookmark}
-                <button class="ContentOptions__btn ContentOptionsBtnEffect" on:click={() => [removeSave(content.id), closeBtn()]}>
+                <button class="ContentOptions__btn ContentOptionsBtnEffect" on:click={() => [removeSave(content.id), deleteBookmark(content.id), closeBtn()]}>
                     <i class="ContentIcon fa-solid fa-trash"></i>
                 </button>
             {/if}

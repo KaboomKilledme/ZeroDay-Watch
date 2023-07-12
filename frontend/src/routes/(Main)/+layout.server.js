@@ -5,8 +5,6 @@ export async function load({ cookies, }) {
     const authToken = cookies.get('authCookie');
     const isValidToken = await checkToken(authToken);
 
-    console.log(isValidToken);
-
     if(!isValidToken){
         throw redirect(308, '/login');
     }
@@ -20,6 +18,7 @@ export async function load({ cookies, }) {
 async function checkToken(authToken){
 
     const response = await fetch(`${PRIVATE_API_URL}/api/token`, {
+        method: 'GET',
         headers: {
             'Authorization':`Bearer ${authToken}`,
             "Accept": "application/vnd.api+json",

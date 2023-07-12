@@ -10,8 +10,6 @@
 
     export let source;
 
-    console.log(source.type);
-
 </script>
 
 <div class="SourceBorder">

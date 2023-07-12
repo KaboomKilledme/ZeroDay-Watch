@@ -1,6 +1,8 @@
 import { PRIVATE_API_URL } from "$env/static/private";
 
-export async function load({ url }) {
+export async function load({cookies,  url }) {
+    const authToken = cookies.get('authCookie');
+
     const mainParams = ['krebs', 'thn', 'cisa', 'secweek'];
     let sources = false;
 
@@ -14,7 +16,8 @@ export async function load({ url }) {
     }
 
     return {
-        sources: sources
+        sources: sources,
+        authToken: authToken
     }
 }
 
