@@ -32,10 +32,11 @@
         width: 100%;
         padding: 0;
         margin: 0;
-        margin-top: auto;      
     }
     .showList{
         z-index: 10;
+        padding: 0;
+        margin: 0;
     }
     .Notify{
         display: flex;
@@ -46,14 +47,14 @@
         min-width: 10rem;
         height: 3rem;
         position: absolute;
-        margin: auto;
-        padding: .5rem;
+        padding: .5rem 0 .5rem 0;
         animation-name: removeNotification;
         animation-duration: 5s;
-
+       
         .Notify__text{
             text-align: center;
             font-family: $secondaryFont;
+            margin-left: 1rem;
         }
 
     }
