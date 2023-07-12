@@ -26,7 +26,14 @@ class UserController extends Controller
             $username = $request->name;
         }
         if($request->password !== NULL){
-            $password = Hash::make($request->password);
+            $password = $request->password;
+            $passwordLen = strlen($password);
+
+            if($passwordLen < 8){
+                return $this->error('', 'Password must have more than 7 characters', 422);
+            }
+
+            $password = Hash::make($password);
         }
 
         $user->update([

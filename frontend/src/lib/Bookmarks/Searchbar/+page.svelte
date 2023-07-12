@@ -8,8 +8,6 @@
 
     let searchQuery = null;
 
-
-
     async function findBookmark(event) {
         event.preventDefault();
 
@@ -39,7 +37,7 @@
     }
 </script>
 
-<form class="BookmarksSearchbar" id=SearchForm>
+<form class="BookmarksSearchbar" id="SearchForm">
     <input
         class="BookmarksSearchbar__input"
         type="text"

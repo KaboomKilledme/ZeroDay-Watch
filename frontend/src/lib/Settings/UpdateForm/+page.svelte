@@ -1,35 +1,117 @@
 <script>
+    import { PUBLIC_API_URL } from "$env/static/public";
     import { createEventDispatcher } from "svelte";
+    import Notification from "$lib/Main/Notification/+page.svelte";
+
     const dispatch = createEventDispatcher()
 
-    let inputs = [
-        {id:'username', placeholder:'Update Username', type:'text'},
-        {id:'password', placeholder:'Update Password', type:'password'},
-        {id:'confirmPassword', placeholder:'Confirm Password', type:'password'}
+    export let authToken;
 
+    let inputValues = [null, null, null];
+
+    let inputs = [
+        {id:1, name:'username', placeholder:'Update Username'},
+        {id:2, name:'password', placeholder:'Update Password'},
+        {id:3, name:'checkPassword', placeholder:'Confirm Password'}
     ]
+
+    function handleSubmit(event){
+        const username = inputValues[0];
+        const password = inputValues[1];
+        const checkPassword = inputValues[2];
+        
+        event.preventDefault();
+
+        if(password !== checkPassword){
+            displayError('Passwords Do Not Match');
+        } else {
+            updateDetails(username, password);
+        }
+
+        closeForm();
+
+        inputValues = [null, null, null];
+
+    }
+
+    async function updateDetails(username, password){
+            const response = await fetch(`${PUBLIC_API_URL}/api/users`, {
+            method: "POST",
+            headers: {
+                'Authorization':`Bearer ${authToken}`,
+                "Accept": "application/vnd.api+json",
+                "Content-Type": "application/vnd.api+json",
+            },
+            body: JSON.stringify({
+                    name: username,
+                    password: password,
+                }),
+            });
+            
+            const data = await response.json();
+            
+            if(response.ok){
+                displaySuccess('Account Details have been updated');
+            
+            }else{
+                displayError(data.message);
+            }
+        }
+        
+
+    function handleInput(event){
+        if( event.target.id === "password" || 
+            event.target.id === "checkPassword"
+        ){
+            event.target.type = "password"
+        }
+    }
 
     function closeForm(){
         dispatch('close', {
             id: null
         })
     }
+
+
+    function displayError(message){
+        displayNotification('error', message);
+    }
+
+    function displaySuccess(message){
+        displayNotification('success', message);
+    }
+
+    function displayNotification(type, message){
+        const Notifications = document.querySelector(`.MainContainer`);
+        new Notification({
+            target: Notifications,
+            props: {
+                type:type,
+                text: message
+            }
+        })
+    }
+
+
 </script>
 
 <div class="UpdateFormBorder">
-    <form class="UpdateForm">
+    <form class="UpdateForm" id="UpdateForm">
         <h1 class="UpdateForm__title">Change Details</h1>
         <div class="UpdateFormFields">
             {#each inputs as input}
                 <input
                 class="UpdateFormFields__input" 
-                id={input.id} placeholder={input.placeholder} type={input.type} >
+                id={input.name} placeholder={input.placeholder} 
+                bind:value={inputValues[input.id-1]}
+                on:input={handleInput} >
             {/each}
-
         </div>
-        <input on:click={() => {closeForm()}}
-        class="UpdateForm__btn"
-        type="submit" value="update">
+
+        <button form="UpdateForm" on:click={handleSubmit}
+        class="UpdateForm__btn" >update</button>
+
     </form>
 </div>
 

@@ -6,6 +6,8 @@
 
     let shownOption = null;
 
+    export let data;
+
     function updateOption(event){
         shownOption = event.detail.id;
     }
@@ -14,13 +16,18 @@
 </script>
 
 <div class="SettingsContainer">
-    {#if shownOption === 1}
-        <UpdateForm on:close={updateOption}/>
-    {:else if shownOption === 2}
-        <LogOutPrompt on:close={updateOption} />
-    {:else if shownOption === 3}
-        <DeleteAccountPrompt on:close={updateOption} />
-    {/if}
+    {#await data }
+        
+    {:then data } 
+        {#if shownOption === 1}
+            <UpdateForm authToken={data.authToken} on:close={updateOption}/>
+        {:else if shownOption === 2}
+            <LogOutPrompt on:close={updateOption} />
+        {:else if shownOption === 3}
+            <DeleteAccountPrompt on:close={updateOption} />
+        {/if}
+    {/await}
+    
     <Options on:option={updateOption} />
 </div>
 

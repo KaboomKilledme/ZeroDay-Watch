@@ -64,7 +64,7 @@
                 margin-top: .3rem;
                 text-align: center;
 
-                background:$linearGradient1;
+                background:rgb(95, 132, 255);;
                 font-family: $primaryFont;
                 text-decoration: none;
                 color: black;
