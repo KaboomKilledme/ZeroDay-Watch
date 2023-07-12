@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\SourceUser;
 use App\Http\Requests\UpdateUserRequest;
 use App\Traits\HttpResponse;
 
@@ -47,9 +48,13 @@ class UserController extends Controller
 
     public function destroy(){
         
-        $user = User::find(Auth::user()->id);
+        $user = User::where('id', Auth::user()->id)->first();
+        $bookmarkedSources = SourceUser::where('user_id', $user->id);
+
         Auth::user()->currentAccessToken()->delete(); 
+        $bookmarkedSources->delete();
         $user->delete();
+
         return $this->success('Your Account has been deleted');
    
     }

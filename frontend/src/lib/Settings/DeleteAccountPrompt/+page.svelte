@@ -1,14 +1,63 @@
 <script>
+    
+    import Notification from "$lib/Main/Notification/+page.svelte";
+    import { PUBLIC_API_URL } from "$env/static/public";
     import { createEventDispatcher } from "svelte";
+    import { goto } from "$app/navigation";
+
+
+    export let authToken;
 
     const dispatch = createEventDispatcher();
 
-    function closeBtn(){
+    async function deleteAccount(){
 
-        dispatch('close', {
-            id: null
-        })
+        const response = await fetch(`${PUBLIC_API_URL}/api/users/delete`, {
+        method: 'POST',
+        headers: {
+            'Authorization':`Bearer ${authToken}`,
+            "Accept": "application/vnd.api+json",
+            "Content-Type": "application/vnd.api+json",
+        }
+        });   
+
+        const data = await response.json();
+
+        if(response.ok){
+            displaySuccess('You have deleted your account')
+            document.cookie ='authCookie=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            goto('/register');
+
+        } else {
+            displayError(data.message)
+        }
     }
+
+    function closeBtn(){
+    dispatch('close', {
+        id: null
+    })
+    }
+
+    function displayError(message){
+    displayNotification('error', message);
+    }
+
+    function displaySuccess(message){
+    displayNotification('success', message);
+    }
+
+    function displayNotification(type, message){
+    const Notifications = document.querySelector(`.MainContainer`);
+    new Notification({
+        target: Notifications,
+        props: {
+            type:type,
+            text: message
+        }
+    })
+    }
+
 
 </script>
 
@@ -19,7 +68,7 @@
         </p>
 
         <div class="DeleteAccountPrompBtns">
-            <button class="PromptBtn">
+            <button class="PromptBtn" on:click={deleteAccount}>
                 <i class="accept fa-solid fa-check"></i>
             </button>
 

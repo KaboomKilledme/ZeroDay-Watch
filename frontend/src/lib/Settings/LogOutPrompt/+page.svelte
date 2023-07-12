@@ -21,7 +21,6 @@
             "Content-Type": "application/vnd.api+json",
         }
         });   
-        const data = await response.json();
 
         if(response.ok){
             displaySuccess('You have logged out')

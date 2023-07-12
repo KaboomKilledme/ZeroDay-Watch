@@ -24,7 +24,7 @@
         {:else if shownOption === 2}
             <LogOutPrompt authToken={data.authToken} on:close={updateOption} />
         {:else if shownOption === 3}
-            <DeleteAccountPrompt on:close={updateOption} />
+            <DeleteAccountPrompt authToken={data.authToken} on:close={updateOption} />
         {/if}
     {/await}
     
