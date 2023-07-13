@@ -51,8 +51,7 @@
             const data = await response.json();
             
             if(response.ok){
-                displaySuccess('Account Details have been updated');
-            
+                displaySuccess('Account Details have been updated ( blank fields had no change )');
             }else{
                 displayError(data.message);
             }
