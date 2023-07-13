@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-
+ 
 path = "mainSites"
 
 with open(f'{path}/krebs.html') as krebs:
