@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
- 
+from OurRequests import Requests as request
+
 path = "subSites"
 
 with open(f'{path}/krebs.html') as krebs:
@@ -20,6 +21,8 @@ class Subroute():
 
     soup = None
     
+    source = None
+
     #The sub route's title
     titleTag = None
     titleClass = None
@@ -38,7 +41,9 @@ class Subroute():
 
 
 
-    def __init__(self, html):
+    def __init__(self, link):
+        self.link = link
+        html = request.get(link).text
         self.assignSoup(html)
 
     @classmethod
@@ -88,7 +93,29 @@ class Subroute():
     def filterByKeywords(cls, content):
         pass
 
+    def saveArticle(self):
+        title = self.getTitle()
+        content = self.getContent()
+
+        data = {"title":title, "content":content,
+                "link":self.link, "source":self.source}
+
+        with open(f"content/{data['title']}.txt", 'w') as subRoute:
+            subRoute.write(f"""
+                ~~~ >>>  {data['title']}  <<< ~~~~
+
+                {data['content']}
+
+                source:{data['source']}
+
+                link:{data['link']}
+
+            """ )         
+            subRoute.close()
+
 class KrebsSubroute(Subroute):
+
+    source = "krebs"
 
     titleTag = "h1"
     titleClass = "entry-title"
@@ -104,10 +131,13 @@ class KrebsSubroute(Subroute):
     ]
 
 
-    def __init__(self, html):   
-        super().__init__(html)
+    def __init__(self, link):   
+        super().__init__(link)
 
 class ThnSubroute(Subroute):
+    
+    source = "thn"
+
     
     titleTag = "h1"
     titleClass = "story-title"
@@ -124,11 +154,13 @@ class ThnSubroute(Subroute):
     ]
 
 
-    def __init__(self, html):
-        super().__init__(html)
+    def __init__(self, link):
+        super().__init__(link)
 
 class SecWeekSubroute(Subroute):
-    
+
+    source = "secweek"
+
     titleTag = "h1"
     titleClass = "entry-title"
     
@@ -141,8 +173,8 @@ class SecWeekSubroute(Subroute):
 
     filters = [{"tag":"div", "class":"zox-post-ad-wrap"}]
 
-    def __init__(self, html):
-        super().__init__(html)
+    def __init__(self, link):
+        super().__init__(link)
 
     @classmethod
     def filterByKeywords(cls, content): # Overriding to remove 'Related:' element
@@ -159,6 +191,9 @@ class SecWeekSubroute(Subroute):
 
 class CisaSubroute(Subroute):
 
+    source = "cisa"
+
+
     titleTag = "h1"
     titleClass = "c-page-title__title"
 
@@ -168,8 +203,8 @@ class CisaSubroute(Subroute):
     shouldFilter = True
     shouldFilterByTags = True
 
-    def __init__(self, html):
-        super().__init__(html)
+    def __init__(self, link):
+        super().__init__(link)
 
     @classmethod
     def filterByTags(cls, content): # Overriding to remove the bottom segments
@@ -190,10 +225,4 @@ class CisaSubroute(Subroute):
 
         return content
 
-
-
-KrebsSubroute(krebsSite)
-ThnSubroute(thnSite)
-SecWeekSubroute(secWeekSite)
-CisaSubroute(cisaSite)
 

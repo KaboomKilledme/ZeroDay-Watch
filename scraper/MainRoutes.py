@@ -1,5 +1,9 @@
 from bs4 import BeautifulSoup
- 
+from OurRequests import Requests as request
+from SubRoutes import KrebsSubroute, ThnSubroute, CisaSubroute, SecWeekSubroute
+import time 
+
+
 path = "mainSites"
 
 with open(f'{path}/krebs.html') as krebs:
@@ -24,7 +28,8 @@ class Website:
     tag = None
     tagClass = None
 
-    def __init__(self, html):
+    def __init__(self, link):
+        html = request.get(link).text
         self.assignSoup(html)
 
     @classmethod
@@ -36,8 +41,8 @@ class Website:
         subLinkElements = cls.soup.find_all(cls.tag, class_=cls.tagClass)
         for subLinkElement in subLinkElements:
            cls.subLinks.append(subLinkElement.a['href'])   
-    
 
+    
 
 class Krebs(Website):
 
@@ -46,6 +51,17 @@ class Krebs(Website):
 
     def __init__(self, html):
         super().__init__(html) 
+
+    @classmethod
+    def saveArticles(cls):
+        cls.subLinks = []
+        cls.getSubLinks()
+        
+        for link in cls.subLinks:
+            subSite = KrebsSubroute(link)
+            subSite.saveArticle()
+            time.sleep(20)
+            
 
 class THN(Website):
     tag = "a"
@@ -66,6 +82,17 @@ class THN(Website):
             else:
                 cls.subLinks.append(subLinkElement['href'])
 
+    @classmethod
+    def saveArticles(cls):
+        cls.subLinks = []
+        cls.getSubLinks()
+        
+        for link in cls.subLinks:
+            subSite = ThnSubroute(link)
+            subSite.saveArticle()
+            time.sleep(20)
+            
+
 class SecWeek(Website):
 
     tag = "div"
@@ -81,32 +108,55 @@ class SecWeek(Website):
 
         for subLinkElement in subLinkElements:
             cls.subLinks.append(subLinkElement.a['href'])
+
+    @classmethod
+    def saveArticles(cls):
+        cls.subLinks = []
+        cls.getSubLinks()
+        
+        for link in cls.subLinks:
+            subSite = SecWeekSubroute(link)
+            subSite.saveArticle()
+            time.sleep(20)
+            
     
 class CISA(Website):
 
     tag = "h3"
     tagClass = "c-teaser__title"
     
-    def __init__(self, html):
-        super().__init__(html)
+    def __init__(self, link):
+        super().__init__(link)
     
     @classmethod
     def getSubLinks(cls): # Overriding method to format urls
         subLinkElements = cls.soup.find_all(cls.tag, class_=cls.tagClass)
         for subLinkElement in subLinkElements:
             link = f"https://www.cisa.gov{subLinkElement.a['href']}"
-            cls.subLinks.append(link)   
+            cls.subLinks.append(link) 
+
+    @classmethod
+    def saveArticles(cls):
+        cls.subLinks = []
+        cls.getSubLinks()
+        
+        for link in cls.subLinks:
+            subSite = CisaSubroute(link)
+            subSite.saveArticle()
+            time.sleep(20)
+              
 
 
 
-cisa = CISA(cisaSite)
-krebs = Krebs(krebsSite)
-thn = THN(thnSite)
-secweek = SecWeek(secWeekSite)
+#cisa = CISA('https://www.cisa.gov')
+#krebs = Krebs('https://krebsonsecurity.com')
 
-cisa.getSubLinks()
-krebs.getSubLinks()
-thn.getSubLinks()
-secweek.getSubLinks()
+#krebs.saveArticles()
 
-print(Website.subLinks)
+#thn = THN('https://thehackernews.com/')
+#thn.saveArticles()
+#secweek = SecWeek('https://www.securityweek.com')
+
+#cisa.saveArticles()
+
+#print(secweek.subLinks)
