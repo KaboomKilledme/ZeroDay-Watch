@@ -21,4 +21,4 @@ EXPOSE 8000
 
 COPY . .
 
-CMD php artisan serve
+CMD php artisan serve --host=0.0.0.0

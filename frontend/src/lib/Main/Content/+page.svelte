@@ -3,7 +3,6 @@
     import Notification from "$lib/Main/Notification/+page.svelte";
     import { createEventDispatcher } from "svelte";
 
-    export let data;
     export let content;
     export let isBookmark = false;
     export let authToken;
@@ -94,6 +93,8 @@
                 {content.title}
             </p>
 
+            <a href={content.link} class="ContentSource" >Source Link</a>
+
             <p class="ContentText__text">
                 {content.content}
             </p>
@@ -166,7 +167,7 @@
 
                 .ContentText__title{
                     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                    font-size: 1.3rem;
+                    font-size:2rem;
                     background: $linearGradient1;
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
@@ -177,6 +178,7 @@
                     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                     width: 100%;
                     font-size: 1.2rem;
+                    overflow-x: hidden;
                 }
             }
 
@@ -218,6 +220,16 @@
                     }
                 }
             }
+        }
+    }
+
+    .ContentSource{
+        font-size: 1.5rem;
+        color: $blue2;
+        font-family: $secondaryFont;
+        text-decoration: none;
+        &:hover{
+            color: white;
         }
     }
 </style>

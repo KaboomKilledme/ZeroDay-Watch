@@ -2,19 +2,19 @@ from bs4 import BeautifulSoup
 from OurRequests import Requests as request
 from CRUD import addSource
 
-path = "subSites"
+# path = "subSites"
 
-with open(f'{path}/krebs.html') as krebs:
-    krebsSite = krebs.read()
+# with open(f'{path}/krebs.html') as krebs:
+#     krebsSite = krebs.read()
 
-with open(f'{path}/cisa.html') as cisa:
-    cisaSite = cisa.read()
+# with open(f'{path}/cisa.html') as cisa:
+#     cisaSite = cisa.read()
 
-with open(f'{path}/secweek.html') as secWeek:
-    secWeekSite = secWeek.read()
+# with open(f'{path}/secweek.html') as secWeek:
+#     secWeekSite = secWeek.read()
 
-with open(f'{path}/thn.html') as THN:
-    thnSite = THN.read()
+# with open(f'{path}/thn.html') as THN:
+#     thnSite = THN.read()
 
 
 

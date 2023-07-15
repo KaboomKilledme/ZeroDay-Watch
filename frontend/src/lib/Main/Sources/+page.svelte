@@ -16,7 +16,7 @@
 <div class="Sources">
     
     {#if sources.length === 0}
-        <h1>No Souces Found</h1>
+        <h1>No Sources Found</h1>
     {:else}
         {#each sources as source}
             <SourceCard on:showContent={showContent} source={source} />

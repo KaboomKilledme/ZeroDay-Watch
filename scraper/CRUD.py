@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import  Table, MetaData, func
+from sqlalchemy import  Table, MetaData
 from Database import session, engine, Source
 
 created_at = datetime.now()
@@ -18,7 +18,6 @@ def addSource(source):
         session.add(newSource)
         session.commit()
     else:
-        print('Record Already Exists')
         raise RuntimeError('Record Already Exists')
 
 def getAllSources():
@@ -33,7 +32,3 @@ def findSource(SourceTitle):
 def getSources(type):
     results = session.query(Source).filter(Source.type == type).all()
     return results
-
-
-#source = {"title":'First Source', "content":"The content", "type":"krebs", "link":"The link"}
-#addSource(source)

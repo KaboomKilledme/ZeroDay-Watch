@@ -3,20 +3,19 @@ from OurRequests import Requests as request
 from SubRoutes import KrebsSubroute, ThnSubroute, CisaSubroute, SecWeekSubroute
 import time 
 
-
 path = "mainSites"
 
-with open(f'{path}/krebs.html') as krebs:
-    krebsSite = krebs.read()
+# with open(f'{path}/krebs.html') as krebs:
+#     krebsSite = krebs.read()
 
-with open(f'{path}/cisa.html') as cisa:
-    cisaSite = cisa.read()
+# with open(f'{path}/cisa.html') as cisa:
+#     cisaSite = cisa.read()
 
-with open(f'{path}/secweek.html') as secWeek:
-    secWeekSite = secWeek.read()
+# with open(f'{path}/secweek.html') as secWeek:
+#     secWeekSite = secWeek.read()
 
-with open(f'{path}/thn.html') as THN:
-    thnSite = THN.read()
+# with open(f'{path}/thn.html') as THN:
+#     thnSite = THN.read()
 
 
 class Website:
@@ -62,8 +61,7 @@ class Krebs(Website):
             try:
                 subSite.saveArticle()
                 time.sleep(20)
-            except Exception as e:
-                print(e)
+            except:
                 break
             
 
@@ -93,8 +91,11 @@ class THN(Website):
         
         for link in cls.subLinks:
             subSite = ThnSubroute(link)
-            subSite.saveArticle()
-            time.sleep(20)
+            try:
+                subSite.saveArticle()
+                time.sleep(20)
+            except:
+                break
             
 
 class SecWeek(Website):
@@ -120,8 +121,11 @@ class SecWeek(Website):
         
         for link in cls.subLinks:
             subSite = SecWeekSubroute(link)
-            subSite.saveArticle()
-            time.sleep(20)
+            try:
+                subSite.saveArticle()
+                time.sleep(20)
+            except:
+                break
             
     
 class CISA(Website):
@@ -146,20 +150,24 @@ class CISA(Website):
         
         for link in cls.subLinks:
             subSite = CisaSubroute(link)
-            subSite.saveArticle()
-            time.sleep(20)
+            try:
+                subSite.saveArticle()
+                time.sleep(20)
+            except:
+                break
               
 
 
 
-# cisa = CISA('https://www.cisa.gov')
-# krebs = Krebs('https://krebsonsecurity.com')
-# krebs.saveArticles()
 
-# thn = THN('https://thehackernews.com/')
-# thn.saveArticles()
-# secweek = SecWeek('https://www.securityweek.com')
+#cisa = CISA('https://www.cisa.gov')
+##krebs = Krebs('https://krebsonsecurity.com')
+#thn = THN('https://thehackernews.com/')
+#secweek = SecWeek('https://www.securityweek.com')
 
-# cisa.saveArticles()
+#krebs.saveArticles()
+#thn.saveArticles()
+#secweek.saveArticles()
+#cisa.saveArticles()
 
-# print(secweek.subLinks)
+print('Ran')
