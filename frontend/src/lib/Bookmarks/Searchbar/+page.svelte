@@ -84,13 +84,17 @@
         }
 
         .BookmarksSearchbar__btn {
-            height: 2.4rem;
+            height: 100%;
             width: 2.5rem;
             border-top-right-radius: .5rem;
             border-bottom-right-radius: .5rem;
             color: white; 
             background: rgb(66, 66, 250);
             border: none;
+
+            &:hover{
+                background: $linearGradient1;
+            }
         }
     }
 </style>

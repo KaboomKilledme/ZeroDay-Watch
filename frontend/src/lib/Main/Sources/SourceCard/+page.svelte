@@ -22,7 +22,7 @@
 
                 { source.type === "thn" ? 'thnLogo':''} 
                 circleLogo {source.type === "krebs" && "kerbsLogo"}"
-                src="sources/source-{source.logo}-logo.png">
+                src="sources/source-{source.type}-logo.png">
             </div>
         </div>
 
@@ -63,7 +63,6 @@
             grid-template-rows: repeat(20, 1fr);
             border: none;
             padding: 0;
-            
 
             &:hover{
                 opacity: 0;
@@ -115,6 +114,7 @@
                 font-size: 1.7rem;
                 color: white;
                 margin-top: 1rem;
+                
 
                 .SourceTitle__text{
                     word-wrap: break-word;
@@ -125,6 +125,8 @@
                     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                     text-overflow: clip;
                     overflow-y: hidden;
+                    overflow-x: hidden;
+
                 }
 
             }

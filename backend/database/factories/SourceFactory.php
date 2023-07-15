@@ -23,20 +23,9 @@ class SourceFactory extends Factory
             'title' => $this->faker->company(),
             'content' => $this->faker->text(),
             'type' => $source,
-            'logo' => $this->selectLogo($source)
+            'link' => 'link'
+            
         ];
     }
-
-    protected function selectLogo($source){
-        if($source === 'krebs'){
-            return 3;
-        } elseif($source === 'thn'){
-            return 2;
-        } elseif($source === 'cisa'){
-            return 4;
-        } else{
-            return 1;
-        }
-    } 
 
 }

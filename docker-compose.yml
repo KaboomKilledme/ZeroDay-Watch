@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+
+  db:
+    image: postgres
+    restart: always
+    network_mode: host
+    environment:
+      POSTGRES_USER: ZeroDay
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: ZeroDayDB
+    ports:
+      - 5432:5432
+
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  frontend:
+    network_mode: host  
+    build: ./frontend
+    ports:
+      - 3000:3000
+      - 5173:5173
+
+    depends_on:
+      - backend
+
+
+  backend:
+    build: ./backend
+    network_mode: host
+
+    ports:
+      - 8000:8000
+
+    depends_on:
+      - db
+
+
+  scraper:
+    build: ./scraper   
+    network_mode: host
+
+networks:
+  dbNetwork:
+    driver: bridge 
+

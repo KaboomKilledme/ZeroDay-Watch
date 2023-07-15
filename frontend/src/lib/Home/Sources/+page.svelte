@@ -6,24 +6,24 @@
 
         <a href="https://www.securityweek.com/" class="source source-1">
             <img class="source__logo source-1__logo"
-             src="sources/source-1-logo.png" alt="">
+             src="sources/source-secweek-logo.png" alt="">
 
             <span class="source__text"> Security Week</span>
         </a>
         
         <a href="https://thehackernews.com/" class="source source-2">
-            <img class="source__logo source-2__logo " src="sources/source-2-logo.png" alt="">
+            <img class="source__logo source-2__logo " src="sources/source-thn-logo.png" alt="">
             <span class="source__text"> The Hacker News </span>
         </a >
         
         <a href="https://www.cisa.gov/" class="source source-3">
-            <img class="source__logo source-3__logo" src="sources/source-4-logo.png" alt="">
+            <img class="source__logo source-3__logo" src="sources/source-cisa-logo.png" alt="">
             <span class="source__text"> Cybersecurity & Infrastructure Secuirty Agency</span>
         </a>
 
     </div>
     <a href="https://krebsonsecurity.com/" class="source-4">
-        <img class="source-4__logo" src="sources/source-3-logo.png" alt="">
+        <img class="source-4__logo" src="sources/source-krebs-logo.png" alt="">
         <span class="source-4__text"> Krebs On Security</span>
     </a>
 </div>

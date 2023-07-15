@@ -59,8 +59,12 @@ class Krebs(Website):
         
         for link in cls.subLinks:
             subSite = KrebsSubroute(link)
-            subSite.saveArticle()
-            time.sleep(20)
+            try:
+                subSite.saveArticle()
+                time.sleep(20)
+            except Exception as e:
+                print(e)
+                break
             
 
 class THN(Website):
@@ -148,15 +152,14 @@ class CISA(Website):
 
 
 
-#cisa = CISA('https://www.cisa.gov')
-#krebs = Krebs('https://krebsonsecurity.com')
+# cisa = CISA('https://www.cisa.gov')
+# krebs = Krebs('https://krebsonsecurity.com')
+# krebs.saveArticles()
 
-#krebs.saveArticles()
+# thn = THN('https://thehackernews.com/')
+# thn.saveArticles()
+# secweek = SecWeek('https://www.securityweek.com')
 
-#thn = THN('https://thehackernews.com/')
-#thn.saveArticles()
-#secweek = SecWeek('https://www.securityweek.com')
+# cisa.saveArticles()
 
-#cisa.saveArticles()
-
-#print(secweek.subLinks)
+# print(secweek.subLinks)

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from OurRequests import Requests as request
+from CRUD import addSource
 
 path = "subSites"
 
@@ -90,28 +91,14 @@ class Subroute():
         return content
     
     @classmethod
-    def filterByKeywords(cls, content):
+    def filterByKeywords(cls):
         pass
 
     def saveArticle(self):
         title = self.getTitle()
         content = self.getContent()
-
-        data = {"title":title, "content":content,
-                "link":self.link, "source":self.source}
-
-        with open(f"content/{data['title']}.txt", 'w') as subRoute:
-            subRoute.write(f"""
-                ~~~ >>>  {data['title']}  <<< ~~~~
-
-                {data['content']}
-
-                source:{data['source']}
-
-                link:{data['link']}
-
-            """ )         
-            subRoute.close()
+        data = {"title":title, "content":content, "link":self.link, "type":self.source}
+        addSource(data)
 
 class KrebsSubroute(Subroute):
 
